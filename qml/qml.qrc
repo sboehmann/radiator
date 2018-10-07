@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>BuildItem.qml</file>
+        <file>Radiator.qml</file>
+        <file>TitleBox.qml</file>
+        <file>settings/SettingsDialog.qml</file>
+        <file>settings/RadiatorPage.qml</file>
+        <file>settings/BranchesPage.qml</file>
+        <file>settings/ProxyPage.qml</file>
+        <file>settings/BranchDelegate.qml</file>
+        <file>qmldir</file>
+        <file>Fonts.qml</file>
+        <file>settings/SettingsPage.qml</file>
+        <file>MargueeText.qml</file>
+        <file>SubBuildItem.qml</file>
+        <file>settings/RemoteDelegate.qml</file>
+        <file>settings/RemotePage.qml</file>
+        <file>Header.qml</file>
+    </qresource>
+</RCC>
