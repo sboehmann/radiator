@@ -236,27 +236,27 @@ void JenkinsClientPrivate::jobRequestFinished(Job job, QNetworkReply *reply)
             return -1;
         };
 
-        parseStatus(job, root.value(QLatin1Literal("color")));
-        job.setBuildable(root.value(QLatin1Literal("buildable")).toBool());
-        job.setConcurrentBuild(root.value(QLatin1Literal("concurrentBuild")).toBool());
-        job.setDisplayName(root.value(QLatin1Literal("displayName")).toString());
-        job.setFullDisplayName(root.value(QLatin1Literal("fullDisplayName")).toString());
-        job.setFullName(root.value(QLatin1Literal("fullName")).toString());
-        job.setDescription(root.value(QLatin1Literal("description")).toString());
-        job.setInQueue(root.value(QLatin1Literal("inQueue")).toBool());
-        job.setNextBuildNumber(root.value(QLatin1Literal("nextBuildNumber")).toInt());
+        parseStatus(job, root.value(QLatin1String("color")));
+        job.setBuildable(root.value(QLatin1String("buildable")).toBool());
+        job.setConcurrentBuild(root.value(QLatin1String("concurrentBuild")).toBool());
+        job.setDisplayName(root.value(QLatin1String("displayName")).toString());
+        job.setFullDisplayName(root.value(QLatin1String("fullDisplayName")).toString());
+        job.setFullName(root.value(QLatin1String("fullName")).toString());
+        job.setDescription(root.value(QLatin1String("description")).toString());
+        job.setInQueue(root.value(QLatin1String("inQueue")).toBool());
+        job.setNextBuildNumber(root.value(QLatin1String("nextBuildNumber")).toInt());
 
-        job.setLastBuildNumber(getBuildFn(root.value(QLatin1Literal("lastBuild"))));
-        job.setFirstBuildNumber(getBuildFn(root.value(QLatin1Literal("firstBuild"))));
-        job.setLastCompletedBuildNumber(getBuildFn(root.value(QLatin1Literal("lastCompletedBuild"))));
-        job.setLastStableBuildNumber(getBuildFn(root.value(QLatin1Literal("lastStableBuild"))));
-        job.setLastFailedBuildNumber(getBuildFn(root.value(QLatin1Literal("lastFailedBuild"))));
-        job.setLastSuccessfulBuildNumber(getBuildFn(root.value(QLatin1Literal("lastSuccessfulBuild"))));
-        job.setLastUnstableBuildNumber(getBuildFn(root.value(QLatin1Literal("lastUnstableBuild"))));
+        job.setLastBuildNumber(getBuildFn(root.value(QLatin1String("lastBuild"))));
+        job.setFirstBuildNumber(getBuildFn(root.value(QLatin1String("firstBuild"))));
+        job.setLastCompletedBuildNumber(getBuildFn(root.value(QLatin1String("lastCompletedBuild"))));
+        job.setLastStableBuildNumber(getBuildFn(root.value(QLatin1String("lastStableBuild"))));
+        job.setLastFailedBuildNumber(getBuildFn(root.value(QLatin1String("lastFailedBuild"))));
+        job.setLastSuccessfulBuildNumber(getBuildFn(root.value(QLatin1String("lastSuccessfulBuild"))));
+        job.setLastUnstableBuildNumber(getBuildFn(root.value(QLatin1String("lastUnstableBuild"))));
         job.setLastUnsuccessfulBuildNumber(getBuildFn(root.value(QStringLiteral("lastUnsuccessfulBuild"))));
 
         {
-            QJsonArray buildArray = root.value(QLatin1Literal("builds")).toArray();
+            QJsonArray buildArray = root.value(QLatin1String("builds")).toArray();
             QList<int> buildNumbers;
             for(auto it = buildArray.constBegin(); it != buildArray.constEnd(); ++it) {
                 buildNumbers.append(getBuildFn(*it));
@@ -298,13 +298,13 @@ void JenkinsClientPrivate::buildRequestFinished(QUrl jobUrl, Build build, QNetwo
     }
 
     QJsonObject root = doc.object();
-    build.setBuilding(root.value(QLatin1Literal("building")).toBool());
-    build.setDisplayName(root.value(QLatin1Literal("displayName")).toString());
-    build.setFullDisplayName(root.value(QLatin1Literal("fullDisplayName")).toString());
-    build.setDescription(root.value(QLatin1Literal("description")).toString());
-    build.setDuration(root.value(QLatin1Literal("duration")).toInt());
-    build.setEstimatedDuration(root.value(QLatin1Literal("estimatedDuration")).toInt());
-    build.setStartedAt(QDateTime::fromMSecsSinceEpoch(root.value(QLatin1Literal("timestamp")).toVariant().toLongLong()));
+    build.setBuilding(root.value(QLatin1String("building")).toBool());
+    build.setDisplayName(root.value(QLatin1String("displayName")).toString());
+    build.setFullDisplayName(root.value(QLatin1String("fullDisplayName")).toString());
+    build.setDescription(root.value(QLatin1String("description")).toString());
+    build.setDuration(root.value(QLatin1String("duration")).toInt());
+    build.setEstimatedDuration(root.value(QLatin1String("estimatedDuration")).toInt());
+    build.setStartedAt(QDateTime::fromMSecsSinceEpoch(root.value(QLatin1String("timestamp")).toVariant().toLongLong()));
 
     if(root.contains("culprits")) {
         QJsonArray culprits = root.value("culprits").toArray();
@@ -318,7 +318,7 @@ void JenkinsClientPrivate::buildRequestFinished(QUrl jobUrl, Build build, QNetwo
         build.setCulPrits(list);
     }
 
-    QString result = root.value(QLatin1Literal("result")).toString().toLower().trimmed();
+    QString result = root.value(QLatin1String("result")).toString().toLower().trimmed();
     if(result == QStringLiteral("success")) {
         build.setStatus(Build::Status::Success);
     }

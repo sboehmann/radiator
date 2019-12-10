@@ -44,28 +44,28 @@ BranchFilter::BranchFilter(const QJsonValue &value)
 
     QJsonObject obj = value.toObject();
 
-    if(obj.value(QLatin1Literal("filter")).isString()) {
-        d->filters.append(obj.value(QLatin1Literal("filter")).toString());
+    if(obj.value(QLatin1String("filter")).isString()) {
+        d->filters.append(obj.value(QLatin1String("filter")).toString());
     }
-    else if(obj.value(QLatin1Literal("filter")).isArray()) {
-        QJsonArray filters = obj.value(QLatin1Literal("filter")).toArray();
+    else if(obj.value(QLatin1String("filter")).isArray()) {
+        QJsonArray filters = obj.value(QLatin1String("filter")).toArray();
         for(auto it = filters.constBegin(); it != filters.constEnd(); ++it) {
             d->filters.append((*it).toString());
         }
     }
 
-    if(obj.value(QLatin1Literal("remote")).isString()) {
-        d->remotes.append(obj.value(QLatin1Literal("remote")).toString());
+    if(obj.value(QLatin1String("remote")).isString()) {
+        d->remotes.append(obj.value(QLatin1String("remote")).toString());
     }
-    else if(obj.value(QLatin1Literal("remote")).isArray()) {
-        QJsonArray filters = obj.value(QLatin1Literal("remote")).toArray();
+    else if(obj.value(QLatin1String("remote")).isArray()) {
+        QJsonArray filters = obj.value(QLatin1String("remote")).toArray();
         for(auto it = filters.constBegin(); it != filters.constEnd(); ++it) {
             d->remotes.append((*it).toString());
         }
     }
 
-    if(obj.contains(QLatin1Literal("visibility"))) {
-        QString v = obj.value(QLatin1Literal("visibility")).toString().trimmed().toLower();
+    if(obj.contains(QLatin1String("visibility"))) {
+        QString v = obj.value(QLatin1String("visibility")).toString().trimmed().toLower();
         QMetaEnum e = QMetaEnum::fromType<Visibility>();
         for(int i = 0; i < e.keyCount(); ++i) {
             if(QString::fromLatin1(e.key(i)).compare(v, Qt::CaseInsensitive) == 0) {
@@ -75,7 +75,7 @@ BranchFilter::BranchFilter(const QJsonValue &value)
         }
     }
 
-    d->priority = obj.value(QLatin1Literal("priority")).toInt();
+    d->priority = obj.value(QLatin1String("priority")).toInt();
 }
 
 BranchFilter::BranchFilter(const BranchFilter &other)

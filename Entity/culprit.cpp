@@ -39,10 +39,10 @@ CulPrit::CulPrit(const QJsonValue &value)
   : d(new CulPritData)
 {
     QJsonObject obj = value.toObject();
-    d->id = obj.value(QLatin1Literal("id")).toString();
-    d->name = obj.value(QLatin1Literal("fullName")).toString();
-    d->description = obj.value(QLatin1Literal("description")).toString();
-    d->url = QUrl::fromUserInput(obj.value(QLatin1Literal("absoluteUrl")).toString());
+    d->id = obj.value(QLatin1String("id")).toString();
+    d->name = obj.value(QLatin1String("fullName")).toString();
+    d->description = obj.value(QLatin1String("description")).toString();
+    d->url = QUrl::fromUserInput(obj.value(QLatin1String("absoluteUrl")).toString());
 }
 
 CulPrit::CulPrit(const CulPrit &rhs)

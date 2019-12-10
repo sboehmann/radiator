@@ -26,10 +26,10 @@ ConfigRemote::ConfigRemote()
 ConfigRemote::ConfigRemote(const QJsonValue &value)
 {
     QJsonObject obj = value.toObject();
-    if(obj.contains(QLatin1Literal("enabled"))) {
-        m_enabled = obj.value(QLatin1Literal("enabled")).toBool();
+    if(obj.contains(QLatin1String("enabled"))) {
+        m_enabled = obj.value(QLatin1String("enabled")).toBool();
     }
-    QString v = obj.value(QLatin1Literal("type")).toString().trimmed().toLower();
+    QString v = obj.value(QLatin1String("type")).toString().trimmed().toLower();
     QMetaEnum e = QMetaEnum::fromType<Type>();
     for(int i = 0; i < e.keyCount(); ++i) {
         if(QString::fromLatin1(e.key(i)).compare(v, Qt::CaseInsensitive) == 0) {
@@ -38,8 +38,8 @@ ConfigRemote::ConfigRemote(const QJsonValue &value)
         }
     }
 
-    m_url = QUrl::fromUserInput(obj.value(QLatin1Literal("url")).toString());
-    m_user = ConfigUser(obj.value(QLatin1Literal("user")));
+    m_url = QUrl::fromUserInput(obj.value(QLatin1String("url")).toString());
+    m_user = ConfigUser(obj.value(QLatin1String("user")));
 }
 
 bool ConfigRemote::isEmpty() const

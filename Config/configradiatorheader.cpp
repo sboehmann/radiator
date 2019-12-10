@@ -30,24 +30,24 @@ ConfigRadiatorHeader::ConfigRadiatorHeader(const QJsonValue &value)
 {
     QJsonObject obj = value.toObject();
 
-    if(obj.contains(QLatin1Literal("visible"))) {
-        m_visible = obj.value(QLatin1Literal("visible")).toBool();
+    if(obj.contains(QLatin1String("visible"))) {
+        m_visible = obj.value(QLatin1String("visible")).toBool();
     }
 
-    if(obj.contains(QLatin1Literal("height"))) {
-        m_height = obj.value(QLatin1Literal("height")).toInt();
+    if(obj.contains(QLatin1String("height"))) {
+        m_height = obj.value(QLatin1String("height")).toInt();
     }
 
-    if(obj.contains(QLatin1Literal("date"))) {
-        m_showDate = obj.value(QLatin1Literal("date")).toBool();
+    if(obj.contains(QLatin1String("date"))) {
+        m_showDate = obj.value(QLatin1String("date")).toBool();
     }
 
-    if(obj.contains(QLatin1Literal("time"))) {
-        m_showTime = obj.value(QLatin1Literal("time")).toBool();
+    if(obj.contains(QLatin1String("time"))) {
+        m_showTime = obj.value(QLatin1String("time")).toBool();
     }
 
-    if(obj.contains(QLatin1Literal("title"))) {
-        m_title = obj.value(QLatin1Literal("title")).toString();
+    if(obj.contains(QLatin1String("title"))) {
+        m_title = obj.value(QLatin1String("title")).toString();
     }
 }
 

@@ -171,12 +171,12 @@ int main(int argc, char *argv[])
     qmlRegisterType<Config>("Radiator.Config", 1, 0, "Config");
     qmlRegisterType<ConfigRemoteModel>("Radiator.Config", 1, 0, "RemoteModel");
 
-    qmlRegisterType<ConfigRadiator>();
-    qmlRegisterType<ConfigRadiatorHeader>();
-    qmlRegisterType<ConfigProxy>();
-    qmlRegisterType<BranchFilter>();
-    qmlRegisterType<ConfigRemote>();
-    qmlRegisterType<ConfigUser>();
+    qmlRegisterAnonymousType<ConfigRadiator>("Radiator", 1);
+    qmlRegisterAnonymousType<ConfigRadiatorHeader>("Radiator", 1);
+    qmlRegisterAnonymousType<ConfigProxy>("Radiator", 1);
+    qmlRegisterAnonymousType<BranchFilter>("Radiator", 1);
+    qmlRegisterAnonymousType<ConfigRemote>("Radiator", 1);
+    qmlRegisterAnonymousType<ConfigUser>("Radiator", 1);
 
     QQmlApplicationEngine engine;
     QObject::connect(&engine, &QQmlApplicationEngine::quit, &app, &QCoreApplication::quit);

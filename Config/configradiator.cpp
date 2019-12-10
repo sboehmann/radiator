@@ -30,34 +30,34 @@ ConfigRadiator::ConfigRadiator()
 ConfigRadiator::ConfigRadiator(const QJsonValue &value)
 {
     QJsonObject obj = value.toObject();
-    m_backgroundImage = QUrl::fromUserInput(obj.value(QLatin1Literal("background")).toString());
-    m_fullScreenMode = obj.value(QLatin1Literal("fullScreen")).toBool();
+    m_backgroundImage = QUrl::fromUserInput(obj.value(QLatin1String("background")).toString());
+    m_fullScreenMode = obj.value(QLatin1String("fullScreen")).toBool();
 
-    if(obj.contains(QLatin1Literal("polling"))) {
-        QJsonValue p = obj.value(QLatin1Literal("polling"));
+    if(obj.contains(QLatin1String("polling"))) {
+        QJsonValue p = obj.value(QLatin1String("polling"));
         if(p.isDouble()) {
             setJobPollingInterval(p.toInt(empty.jobPollingInterval()));
             setBuildPollingInterval(p.toInt(empty.buildPollingInterval()));
         }
         else {
             QJsonObject po = p.toObject();
-            setJobPollingInterval(po.value(QLatin1Literal("job")).toInt(empty.jobPollingInterval()));
-            setBuildPollingInterval(po.value(QLatin1Literal("build")).toInt(empty.buildPollingInterval()));
+            setJobPollingInterval(po.value(QLatin1String("job")).toInt(empty.jobPollingInterval()));
+            setBuildPollingInterval(po.value(QLatin1String("build")).toInt(empty.buildPollingInterval()));
         }
     }
 
-    setMarquee(obj.value(QLatin1Literal("marguee")).toInt(empty.marquee()));
+    setMarquee(obj.value(QLatin1String("marguee")).toInt(empty.marquee()));
 
     QMetaEnum me = QMetaEnum::fromType<Qt::TextElideMode>();
     bool ok;
-    int tem = me.keyToValue(obj.value(QLatin1Literal("elide")).toString().toLatin1().data(), &ok);
+    int tem = me.keyToValue(obj.value(QLatin1String("elide")).toString().toLatin1().data(), &ok);
     setElide(ok ? static_cast<Qt::TextElideMode>(tem) : empty.elide());
 
-    setHistoricalBuildCount(obj.value(QLatin1Literal("history")).toInt(empty.historicalBuildCount()));
-    setTrayIconEnabled(obj.value(QLatin1Literal("trayIconEnabled")).toBool(empty.trayIconEnabled()));
-    setBlameEnabled(obj.value(QLatin1Literal("blameEnabled")).toBool(empty.blameEnabled()));
+    setHistoricalBuildCount(obj.value(QLatin1String("history")).toInt(empty.historicalBuildCount()));
+    setTrayIconEnabled(obj.value(QLatin1String("trayIconEnabled")).toBool(empty.trayIconEnabled()));
+    setBlameEnabled(obj.value(QLatin1String("blameEnabled")).toBool(empty.blameEnabled()));
 
-    m_header = ConfigRadiatorHeader(obj.value(QLatin1Literal("header")));
+    m_header = ConfigRadiatorHeader(obj.value(QLatin1String("header")));
 }
 
 QJsonObject ConfigRadiator::toJson() const
